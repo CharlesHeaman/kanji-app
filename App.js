@@ -1,14 +1,15 @@
 import Axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native';
 import { API_KEY } from '@env'
+import SubjectInfo from './pages/SubjectInfo/SubjectInfo';
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
   const [subjectData, setSubjectData] = useState({});
 
   useEffect(() => {
-    console.log(API_KEY)
     Axios.get("https://api.wanikani.com/v2/subjects/1", {
       headers: {
           "Content-Type": "application/json",
@@ -17,22 +18,24 @@ export default function App() {
       },
       params: {}
     }).then((response) => {
-        setSubjectData(response.data.data)
+        setSubjectData(response.data.data);
+        setIsLoading(false);
     })  
   }, [])
   
-  console.log(Object.keys(subjectData))
-  console.log(subjectData.level)
-  console.log(subjectData.characters)
-  console.log(subjectData.meanings && subjectData.meanings.filter(meaning => meaning.primary)[0].meaning)
-  console.log(subjectData.meaning_mnemonic)
-  console.log(subjectData.amalgamation_subject_ids)
+  // console.log(Object.keys(subjectData))
+  // console.log(subjectData.level)
+  // console.log(subjectData.characters)
+  // console.log(subjectData.meanings && subjectData.meanings.filter(meaning => meaning.primary)[0].meaning)
+  // console.log(subjectData.meaning_mnemonic)
+  // console.log(subjectData.amalgamation_subject_ids)
 
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaView style={styles.container}>
+      <View style={{ padding: 20}}>
+        {!isLoading && <SubjectInfo subjectData={subjectData}/>}
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -40,7 +43,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    padding: 20
   },
 });
