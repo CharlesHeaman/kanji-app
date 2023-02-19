@@ -1,7 +1,9 @@
 import { Button, StyleSheet, Text, TextInput, View } from "react-native"
+import AddButton from "../../../../components/AddButton.js"
 import Section from "../../../../components/Section.js"
 import SectionHeader from "../../../../components/SectionHeader.js"
 import SectionSubHeader from "../../../../components/SectionSubHeader.js"
+import SmallHeader from "../../../../components/SmallHeader.js"
 import SubSection from "../../../../components/SubSection.js"
 import TextBody from "../../../../components/TextBody.js"
 
@@ -12,14 +14,15 @@ const Name = (props) => {
             {/* Names */}
             <SubSection>
                 {/* Primary */}
-                <View>
-                    <Text>Primary</Text>
-                </View>
+                <SubSection>
+                    <SmallHeader title='Primary'/>
+                    <TextBody text={props.primaryMeaning}/>
+                </SubSection>
                 {/* User Synonyms */}
-                <View>
-                    <Text>User Synonyms</Text>
-                    <Button title='Add Synonym'></Button>
-                </View>
+                <SubSection>
+                    <SmallHeader title='User Synonyms'/>
+                    <AddButton title='Add Synonym'/>
+                </SubSection>
             </SubSection>
             {/* Mnemonic */}
             <SubSection>

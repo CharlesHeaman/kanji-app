@@ -5,7 +5,6 @@ import PageNav from "../../../components/PageNav"
 import SubSection from "../../../components/SubSection"
 
 const SubjectHeader = (props) => {
-    console.log(props.primaryMeaning)
     return (
         <View>
             <SubSection>
@@ -14,7 +13,7 @@ const SubjectHeader = (props) => {
                     alignItems: 'center',
                 }}>
                     <Icon text={props.level}/>
-                    <Icon text={props.characters}/>
+                    <Icon text={props.characters} radical/>
                     <PageHeader title={props.primaryMeaning}/>
                 </View>
             </SubSection>
