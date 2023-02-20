@@ -3,7 +3,6 @@ import CharacterGridItem from "../../../../components/CharacterGridItem"
 import SectionHeader from "../../../../components/SectionHeader"
 
 const FoundInKanji = (props) => {
-    console.log(Object.keys(props.foundInData.data))
     return (
         <View>
             <SectionHeader title='Found In Kanji'/>
@@ -14,6 +13,14 @@ const FoundInKanji = (props) => {
                         meaning={kanji.data.meanings.find((meaning) => meaning.primary).meaning}
                         reading={kanji.data.readings.find((reading) => reading.primary).reading}
                         level={kanji.data.level}
+                        burned={props.assignmentData.find((assignment) => assignment.data.subject_id == kanji.id) ?
+                            props.assignmentData.find((assignment) => assignment.data.subject_id == kanji.id).data.burned_at != null :
+                            false
+                        }
+                        locked={props.assignmentData.find((assignment) => assignment.data.subject_id == kanji.id) ?
+                            props.assignmentData.find((assignment) => assignment.data.subject_id == kanji.id).data.unlocked_at == null :
+                            true
+                        }
                         key={index}
                     /> : ''
             )}

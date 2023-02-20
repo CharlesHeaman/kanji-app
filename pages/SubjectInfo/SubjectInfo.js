@@ -16,7 +16,7 @@ const SubjectInfo = (props) => {
                 mnemonic={props.subjectData.meaning_mnemonic}
                 primaryMeaning={props.subjectData.meanings.find((meaning) => meaning.primary).meaning}
             />
-            <FoundInKanji foundInData={props.foundInData}/>
+            <FoundInKanji foundInData={props.foundInData} assignmentData={props.assignmentData}/>
             <Progress reviewStatData={props.reviewStatData[0].data}/>
         </Page>
     )

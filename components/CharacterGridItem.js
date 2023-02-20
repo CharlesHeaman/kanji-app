@@ -1,11 +1,14 @@
 import { StyleSheet, Text, View } from "react-native"
 
 const CharacterGridItem = (props) => {
+    console.log("burned", props.burned)
     return (
-        <View style={styles.itemWrapper}>
+        <View style={[styles.itemWrapper, props.burned ? styles.burned : '', props.locked ? styles.locked : '']}>
             <View style={styles.charactersLevelWrap}>
                 <Text style={[styles.itemText, styles.charactersText]}>{props.characters}</Text>
                 <Text style={styles.itemText}>{props.level}</Text>
+                <Text>{' '}</Text>
+                <Text style={styles.itemText}>{props.id}</Text>
             </View>
             <View style={styles.meaningReadingWrap}>
                 <Text style={styles.itemText}>{props.reading}</Text>
@@ -44,6 +47,13 @@ const styles = StyleSheet.create({
     meaningReadingWrap: {
         display: 'flex',
         alignItems: 'flex-end'
+    },
+    burned: {
+        backgroundColor: '#555',
+        borderBottomColor: '#333'
+    },
+    locked: {
+        opacity: 0.5
     }
 })
 
