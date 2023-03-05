@@ -3,6 +3,8 @@ import SubjectInfo from './pages/SubjectInfo/SubjectInfo';
 import DashBoard from './pages/DashBoard/DashBoard';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Kanji from './components/Kanji';
+import Radical from './components/Radical';
 
 const Stack = createNativeStackNavigator();
 
@@ -16,7 +18,7 @@ export default function App() {
         />
         <Stack.Screen
           name='Radical'
-          component={SubjectInfo}
+          component={Radical}
           options={({ route }) => 
             ({
               title: route.params.characters,
@@ -30,7 +32,7 @@ export default function App() {
         />
         <Stack.Screen
           name='Kanji'
-          component={SubjectInfo}
+          component={Kanji}
           options={({ route }) => 
             ({
               title: route.params.characters,

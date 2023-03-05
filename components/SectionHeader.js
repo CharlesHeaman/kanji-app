@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
         marginBottom: 10
     },
     sectionHeaderText: {
-        fontSize: 28,
+        fontSize: 24,
         fontWeight: '300',
         lineHeight: 40,
         textShadowColor: '#fff',
