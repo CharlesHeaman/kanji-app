@@ -36,11 +36,6 @@ const SubjectInfo = (props) => {
             }).then((response) => {
                 setSubjectData(response.data.data);
                 setSubjectLoading(false);
-                props.navigation.setOptions({ headerTitle: () => <SubjectHeader 
-                        level={subjectData.level}
-                        characters={subjectData.characters}
-                        primaryMeaning={subjectData.meanings.find((meaning) => meaning.primary).meaning}
-                    /> })
                 getFoundInData(response.data.data.amalgamation_subject_ids);
                 getAssignmentData(response.data.data.amalgamation_subject_ids);
             }
@@ -98,7 +93,7 @@ const SubjectInfo = (props) => {
 
     return (
         <Page>
-            {!subjectLoading && 
+            {/* {!subjectLoading && 
                 <>
                     <SubjectHeader 
                         level={subjectData.level}
@@ -121,7 +116,7 @@ const SubjectInfo = (props) => {
                 <Progress 
                     reviewStatData={reviewStatData[0].data
                 }/>
-            }
+            } */}
         </Page>
     )
 }

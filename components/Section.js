@@ -10,7 +10,9 @@ const Section = (props) => {
 
 const styles = StyleSheet.create({
     sectionWrapper: {
-        marginBottom: 30
+        backgroundColor: 'white',
+        padding: 15,
+        marginBottom: 15
     }
 })
 

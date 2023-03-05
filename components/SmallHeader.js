@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 
 const SmallHeader = (props) => {
     return (
@@ -9,12 +9,12 @@ const SmallHeader = (props) => {
 const styles = StyleSheet.create({
     headerText: {
         fontWeight: '700',
-        marginRight: 11,
-        color: '#999',
         textTransform: 'uppercase',
         textShadowColor: '#fff',
         textShadowOffset: {width: 0, height: 1},
-        textShadowRadius: 0
+        textShadowRadius: 0,
+        marginTop: 5,
+        marginBottom: 5,
     }
 })
 
