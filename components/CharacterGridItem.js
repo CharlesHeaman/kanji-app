@@ -1,7 +1,6 @@
 import { StyleSheet, Text, View } from "react-native"
 
 const CharacterGridItem = (props) => {
-    console.log("burned", props.burned)
     return (
         <View style={[styles.itemWrapper, props.burned ? styles.burned : '', props.locked ? styles.locked : '']}>
             <View style={styles.charactersLevelWrap}>

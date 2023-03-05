@@ -6,6 +6,8 @@ import Page from "../../components/Page"
 import { useEffect, useState } from "react"
 import { API_KEY } from '@env'
 import Axios from "axios"
+import { Button } from "react-native"
+import Icon from "../../components/Icon"
 
 const SubjectInfo = (props) => {
     const subjectID = 1;
@@ -34,6 +36,11 @@ const SubjectInfo = (props) => {
             }).then((response) => {
                 setSubjectData(response.data.data);
                 setSubjectLoading(false);
+                props.navigation.setOptions({ headerTitle: () => <SubjectHeader 
+                        level={subjectData.level}
+                        characters={subjectData.characters}
+                        primaryMeaning={subjectData.meanings.find((meaning) => meaning.primary).meaning}
+                    /> })
                 getFoundInData(response.data.data.amalgamation_subject_ids);
                 getAssignmentData(response.data.data.amalgamation_subject_ids);
             }

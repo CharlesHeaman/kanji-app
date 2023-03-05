@@ -1,10 +1,12 @@
-import { StyleSheet, View } from "react-native"
+import { ScrollView, StyleSheet, View } from "react-native"
 
 const Page = (props) => {
     return (
-        <View style={styles.page}>
-            {props.children}
-        </View>
+        <ScrollView>            
+            <View style={styles.page}>
+                {props.children}
+            </View>
+        </ScrollView>
     )
 }
 

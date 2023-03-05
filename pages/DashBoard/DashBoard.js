@@ -1,10 +1,11 @@
 import { API_KEY } from '@env';
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Button } from 'react-native';
 import Page from '../../components/Page';
 import ProgressTile from './components/ProgressTile';
 
-function DashBoard() {
+const DashBoard = ({ navigation }) => {
     const [burnedData, setBurnedData] = useState([])
     const [enlightenedData, setEnlightenedData] = useState([])
     const [masterData, setMasterData] = useState([])
