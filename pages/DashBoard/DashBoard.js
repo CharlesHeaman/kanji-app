@@ -1,16 +1,15 @@
 import { API_KEY } from '@env';
 import Axios from 'axios';
 import { useEffect, useState } from 'react';
-import { Text, View } from 'react-native';
-import CharacterGridItem from '../../components/CharacterGridItem';
 import KanjiIcon from '../../components/KanjiIcon';
 import Page from '../../components/Page';
-import ProgressGrid from '../../components/ProgressGrid';
+import IconGrid from '../../components/IconGrid';
 import ProgressTile from '../../components/ProgressTile';
 import RadicalIcon from '../../components/RadicalIcon';
 import Section from '../../components/Section';
 import SectionHeader from '../../components/SectionHeader';
 import SmallHeader from '../../components/SmallHeader';
+import DashBoardButton from './components/DashboardButton';
 import SRCProgressTile from './components/SRCProgressTile';
 
 const DashBoard = ({ navigation }) => {
@@ -108,11 +107,19 @@ const DashBoard = ({ navigation }) => {
         <Page>
           <Section>
             <SectionHeader title='Currently Available'/>
+            <DashBoardButton 
+              title='Lessons' 
+              count={assignmentData.filter((assignment) => new Date(assignment.data.unlocked_at) < new Date() && assignment.data.started_at === null).length}
+            />
+            <DashBoardButton 
+              title='Reviews' 
+              count={assignmentData.filter((assignment) => new Date(assignment.data.available_at) < new Date() && assignment.data.burned_at === null).length}
+            />
           </Section>
           <Section>
             <SectionHeader title={`Level ${levelData[levelData.length - 1] ? levelData[levelData.length - 1].data.level : ''} Progress`}/> 
               <SmallHeader title='Radicals'/>   
-              <ProgressGrid>
+              <IconGrid>
                 {subjectData.filter((subject) => subject.data.level === levelData[levelData.length - 1].data.level && subject.object === "radical").map((subject, index) =>
                   <ProgressTile
                     srsStage={
@@ -120,18 +127,21 @@ const DashBoard = ({ navigation }) => {
                         assignmentData.find((assignment) => assignment.data.subject_id === subject.id).data.srs_stage :
                         null
                     }
+                    key={index}
                   >
                     <RadicalIcon
                       id={subject.id}
                       characters={subject.data.characters}
                       navigation={navigation}
-                      key={index}
+                      locked={assignmentData.find((assignment) => assignment.data.subject_id === subject.id) ?
+                        new Date(assignmentData.find((assignment) => assignment.data.subject_id === subject.id).data.unlocked_at) > new Date() : true
+                      }
                     />
                   </ProgressTile>
                 )}
-              </ProgressGrid>      
+              </IconGrid>      
               <SmallHeader title='Kanji'/>
-              <ProgressGrid>
+              <IconGrid>
                 {subjectData.filter((subject) => subject.data.level === levelData[levelData.length - 1].data.level && subject.object === "kanji").map((subject, index) =>
                 <ProgressTile
                     srsStage={
@@ -139,16 +149,19 @@ const DashBoard = ({ navigation }) => {
                         assignmentData.find((assignment) => assignment.data.subject_id === subject.id).data.srs_stage :
                         null
                     }
+                    key={index}
                   >
                     <KanjiIcon
                       id={subject.id}
                       characters={subject.data.characters}
                       navigation={navigation}
-                      key={index}
+                      locked={assignmentData.find((assignment) => assignment.data.subject_id === subject.id) ?
+                        new Date(assignmentData.find((assignment) => assignment.data.subject_id === subject.id).data.unlocked_at) > new Date() : true
+                      }
                     />                  
                   </ProgressTile>
                 )}
-              </ProgressGrid>
+              </IconGrid>
           </Section>
           <Section>
             <SectionHeader title='Progress'/>
@@ -173,36 +186,6 @@ const DashBoard = ({ navigation }) => {
                 level='Burned'
             />
           </Section>
-          {/* <Section>
-            <SmallHeader title='New Unlocks in the Last 30 Days'/>
-            {assignmentData.filter((assignment) => new Date(assignment.data.unlocked_at) > new Date(new Date().setDate(new Date().getDate() - 30))).map((assignment, index) =>
-              subjectData.find((subject) => subject.id === assignment.data.subject_id) ?
-                <CharacterGridItem
-                  characters={subjectData.find((subject) => subject.id === assignment.data.subject_id).data.characters}
-                  key={index}
-                /> : null
-            )}
-          </Section>
-          <Section>
-            <SmallHeader title='Critical Condition Items'/>
-            {reviewStatistics.filter((reviewStatistic) => reviewStatistic.data.percentage_correct < 50).map((reviewStatistic, index) =>            
-              subjectData.find((subject) => subject.id === reviewStatistic.data.subject_id) ?
-                <CharacterGridItem
-                  characters={subjectData.find((subject) => subject.id === reviewStatistic.data.subject_id).data.characters}
-                  key={index}
-                /> : null
-            )}
-          </Section>
-          <Section>
-            <SmallHeader title='Burned Items in the Last 30 Days'/>
-            {assignmentData.filter((assignment) => new Date(assignment.data.burned_at) > new Date(new Date().setDate(new Date().getDate() - 30))).map((assignment, index) =>            
-              subjectData.find((subject) => subject.id === assignment.data.subject_id) ?
-                <CharacterGridItem
-                  characters={subjectData.find((subject) => subject.id === assignment.data.subject_id).data.characters}
-                  key={index}
-                /> : null
-            )}
-          </Section> */}
         </Page>
     )
 }

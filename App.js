@@ -1,10 +1,9 @@
-import { SafeAreaView, ScrollView, StyleSheet } from 'react-native';
-import SubjectInfo from './pages/SubjectInfo/SubjectInfo';
-import DashBoard from './pages/DashBoard/DashBoard';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StyleSheet } from 'react-native';
 import Kanji from './components/Kanji';
 import Radical from './components/Radical';
+import DashBoard from './pages/DashBoard/DashBoard';
 
 const Stack = createNativeStackNavigator();
 

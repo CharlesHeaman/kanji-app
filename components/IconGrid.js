@@ -1,6 +1,6 @@
 import { StyleSheet, View } from "react-native"
 
-const ProgressGrid = (props) => {
+const IconGrid = (props) => {
     return (
         <View style={styles.grid}>
             {props.children}
@@ -16,4 +16,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default ProgressGrid
+export default IconGrid

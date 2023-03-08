@@ -3,7 +3,11 @@ import { Pressable, StyleSheet, Text } from "react-native"
 const KanjiIcon = (props) => {
     return (
         <Pressable 
-            style={styles.iconWrapper} 
+            style={({ pressed }) => [{ 
+                opacity: pressed ? 0.25 : 1 }, 
+                styles.iconWrapper ,
+                props.locked ? styles.locked : ''
+            ]}
             onPress={() => props.navigation.navigate('Kanji', { id: props.id, characters: props.characters })}
         >
             <Text style={styles.iconText}>{props.characters}</Text>
@@ -32,6 +36,11 @@ const styles = StyleSheet.create({
         textShadowColor: 'rgba(0,0,0,0.2)',
         textShadowOffset: { width: 0, height: 1 },
         textShadowRadius: 0
+    },
+    locked: {
+        backgroundColor: '#999',
+        shadowColor: '#777',
+        opacity: 0.5
     }
 })
 

@@ -1,11 +1,11 @@
-import { StyleSheet, Text, View } from "react-native"
+import { Pressable, StyleSheet, Text } from "react-native"
 
 function SRCProgressTile(props) {
     return (
-        <View style={[styles.progressTileWrapper, styles[props.level.toLowerCase()]]}>
+        <Pressable style={({ pressed }) => [{ opacity: pressed ? 0.25 : 1 }, styles.progressTileWrapper, styles[props.level.toLowerCase()]]}>
             <Text style={styles.progressTileLevelText}>{props.level}</Text>
             <Text style={styles.progressTileCountText}>{props.count}</Text>
-        </View>
+        </Pressable>
     )
 }
 
@@ -22,16 +22,16 @@ const styles = StyleSheet.create({
     progressTileCountText: {
         color: '#fff',
         fontSize: 16,
-        // width: 40,
-        fontWeight: '700',
-        // textAlign: 'center',
-        // marginBottom: 12
+        textShadowColor: 'rgba(0,0,0,0.2)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 0
     },
     progressTileLevelText: {
         color: '#fff',
-        // opacity: 0.7,
         fontSize: 16,
-        // textAlign: 'center'
+        textShadowColor: 'rgba(0,0,0,0.2)',
+        textShadowOffset: { width: 0, height: 1 },
+        textShadowRadius: 0
     },
     burned: {
         backgroundColor: '#434343',
