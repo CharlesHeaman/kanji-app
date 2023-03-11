@@ -3,8 +3,13 @@ import { Pressable, StyleSheet, Text } from "react-native"
 const RadicalIcon = (props) => {
     return (
         <Pressable 
-            style={({ pressed }) => [{ 
-                opacity: pressed ? 0.25 : 1 }, 
+            style={({ pressed }) => [
+                { 
+                    opacity: pressed ? 0.25 : 1,
+                    shadowOffset: { width: 0, height: pressed ? 0 : 3 }, 
+                    marginTop: pressed ? 3 : 0,
+                    marginBottom: pressed ? 7 : 10
+                }, 
                 styles.iconWrapper ,
                 props.locked ? styles.locked : ''
             ]}
@@ -24,9 +29,7 @@ const styles = StyleSheet.create({
         borderRadius: 3,
         shadowOpacity: 1,
         shadowRadius: 0,
-        shadowOffset: { width: 0, height: 3 },
-        marginRight: 10,
-        marginBottom: 10
+        marginRight: 10
     },
     iconText: {
         color: '#fff',

@@ -1,6 +1,6 @@
 import { Pressable, StyleSheet, Text } from "react-native"
 
-const KanjiIcon = (props) => {
+const VocabularyIcon = (props) => {
     return (
         <Pressable 
             style={({ pressed }) => [
@@ -13,7 +13,7 @@ const KanjiIcon = (props) => {
                 styles.iconWrapper ,
                 props.locked ? styles.locked : ''
             ]}
-            onPress={() => props.navigation.navigate('Kanji', { id: props.id, characters: props.characters })}
+            onPress={() => props.navigation.navigate('Vocabulary', { id: props.id, characters: props.characters })}
         >
             <Text style={styles.iconText}>{props.characters}</Text>
         </Pressable>
@@ -22,14 +22,14 @@ const KanjiIcon = (props) => {
 
 const styles = StyleSheet.create({
     iconWrapper: {
-        backgroundColor: '#f100a1',
-        shadowColor: '#dd0093',
-        width: 48,
+        backgroundColor: '#a0f',
+        shadowColor: '#80c',
         height: 48,
         borderRadius: 3,
         shadowOpacity: 1,
         shadowRadius: 0,
-        marginRight: 10
+        marginRight: 10,
+        paddingHorizontal: 10
     },
     iconText: {
         color: '#fff',
@@ -47,4 +47,4 @@ const styles = StyleSheet.create({
     }
 })
 
-export default KanjiIcon
+export default VocabularyIcon
