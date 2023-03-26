@@ -2,17 +2,20 @@ import { Pressable, StyleSheet, Text } from "react-native"
 
 const DashBoardButton = (props) => {
     return (
-        <Pressable style={({ pressed }) => [{ 
-            opacity: pressed ? 0.25 : 1, 
-            shadowOffset: { width: 0, height: pressed ? 0 : 6 }, 
-            marginTop: props.title === "Lessons" ? 
-                pressed ? 5 : 0 :
-                pressed ? 15 : 10, 
-            marginBottom: pressed ? 0 : 5}, 
-            styles.dashboardButton,
-            styles[props.title.toLowerCase()],
-            props.count === 0 ? styles.locked : ''
-        ]}>
+        <Pressable 
+            style={({ pressed }) => [{ 
+                opacity: pressed ? 0.25 : 1, 
+                shadowOffset: { width: 0, height: pressed ? 0 : 6 }, 
+                marginTop: props.title === "Lessons" ? 
+                    pressed ? 5 : 0 :
+                    pressed ? 15 : 10, 
+                marginBottom: pressed ? 0 : 5}, 
+                styles.dashboardButton,
+                styles[props.title.toLowerCase()],
+                props.count === 0 ? styles.locked : ''
+            ]}
+            onPress={() => props.navigation.navigate('Review')}
+        >
             <Text style={styles.dashboardButtonText}>{props.title}</Text>
             <Text style={styles.dashboardButtonText}>{props.count}</Text>
         </Pressable>

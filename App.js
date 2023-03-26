@@ -5,6 +5,7 @@ import Kanji from './components/Kanji';
 import Radical from './components/Radical';
 import Vocabulary from './components/Vocabulary';
 import DashBoard from './pages/DashBoard/DashBoard';
+import Review from './pages/Review/Review';
 
 const Stack = createNativeStackNavigator();
 
@@ -15,6 +16,10 @@ export default function App() {
         <Stack.Screen
           name='Dashboard'
           component={DashBoard}
+        />
+        <Stack.Screen
+          name='Review'
+          component={Review}
         />
         <Stack.Screen
           name='Radical'
@@ -62,11 +67,3 @@ export default function App() {
     </NavigationContainer>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    // padding: 20
-  },
-});

@@ -110,10 +110,12 @@ const DashBoard = ({ navigation }) => {
             <DashBoardButton 
               title='Lessons' 
               count={assignmentData.filter((assignment) => new Date(assignment.data.unlocked_at) < new Date() && assignment.data.started_at === null).length}
+              navigation={navigation}
             />
             <DashBoardButton 
               title='Reviews' 
               count={assignmentData.filter((assignment) => new Date(assignment.data.available_at) < new Date() && assignment.data.burned_at === null).length}
+              navigation={navigation}
             />
           </Section>
           <Section>
